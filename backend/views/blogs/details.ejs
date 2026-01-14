@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+
+<body>
+  <header>
+    <h1>Library of Ang</h1>
+  </header>
+
+  <%- include('../partials/nav.ejs') %>
+
+  <main>
+    <h2><%= title %></h2>
+    <p><%= blog.body %></p>
+    <button class="delete" data-doc="<%= blog._id %>">Delete</button>
+  </main>
+
+  <%- include('../partials/footer.ejs') %>
+
+  <script>
+    const trashcan = document.querySelector('button.delete');
+    trashcan.addEventListener(('click'), (e) => {
+      const endpoint = `/blogs/${trashcan.dataset.doc}`;
+      fetch(endpoint, { method: 'DELETE' })
+        .then((response) => response.json())    // pass json into js object
+        .then((data) => window.location.href = data.redirect)
+        .catch((err) =>  console.log(err))
+    })
+  </script>
+</body>
+</html>
