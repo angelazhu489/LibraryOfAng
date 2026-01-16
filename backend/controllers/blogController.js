@@ -1,4 +1,4 @@
-const Blog = require('../models/blog'); // import db collection
+const Blog = require('../models/blogModel'); // import db collection
 
 // READ – all blogs sorted by creation date
 const blog_index = (req, res) => {
@@ -15,7 +15,10 @@ const blog_details = (req, res) => {
   Blog.findById(id)
     .then((result) => {
       res.render('blogs/details', { blog: result, title: result.title });
-    }).catch((err) => console.log(err));
+    }).catch((err) => {
+      console.log(err);
+      res.status(404).render('404', { title: '404 blog not found' });
+    });
 }
 
 const blog_create_get = (req, res) => {
