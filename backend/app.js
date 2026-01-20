@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const express = require('express');
 const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes'); // import blog routers
+var bodyParser = require('body-parser')
+
 
 // create express app
 const app = express();
@@ -18,10 +20,8 @@ mongoose.connect(process.env.dbURI)   // "first connect"
   }).catch((err) => console.log(err));
 
 // middleware and static files
-
+const jsonParser = bodyParser.json()
 app.use(express.static('public'))   // get access to 'public' directory
-app.use(express.urlencoded({ extend: true }));  // accept form data; get access to `req.body`
-
 app.use(morgan('dev'));   // set logger middleware
 
 app.use((req, res, next) => {  // invoked everytime if reached
@@ -41,9 +41,9 @@ app.get('/about', (req, res) => {
 });
 
 // blog routes
-app.use('/blogs', blogRoutes);
+app.use('/blogs', jsonParser, blogRoutes);
 
 // Get 404
 app.use((req, res) => {  // invoked everytime if reached
-  res.status(404).render('404', { title: '404 page not found' });
+  res.status(404).json({ error: '404 page not found' });
 });

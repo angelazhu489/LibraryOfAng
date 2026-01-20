@@ -6,7 +6,7 @@ const router = express.Router();  // create new router
 router.get('/', blogController.blog_index);
 
 // GET – blog form
-router.get('/create', blogController.blog_create_get);
+// router.get('/create', blogController.blog_create_get);
 
 // GET – blog by id
 router.get('/:id', blogController.blog_details)
