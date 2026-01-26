@@ -1,7 +1,7 @@
-## Library of Ang
+# Library of Ang
 My collection of projects
 
-# Created with:
+## Created with:
 - React
 - Express
 - Node
