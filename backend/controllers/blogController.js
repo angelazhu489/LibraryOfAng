@@ -33,11 +33,15 @@ const blog_create_post = async (req, res) => {
   }
 }
 
-const blog_delete = (req, res) => {
-  const id = req.params.id;
-  Blog.findByIdAndDelete(id)
-    .then((result) => res.send({ redirect: '/blogs' }))
-    .catch(err => console.log(err));
+const blog_delete = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const blog = await Blog.findOneAndDelete({ _id: id })
+    res.status(200).json(blog)
+  }
+  catch (error) {
+    res.status(404).json({ error: error.message });
+  }
 }
 
 module.exports = {

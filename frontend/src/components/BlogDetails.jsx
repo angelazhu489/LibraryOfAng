@@ -1,6 +1,22 @@
+import { useState } from "react"
+
+import { useBlogContext } from '../hooks/useBlogContext'
+
 const BlogDetails = ({ blog }) => {
+  const [error, setError] = useState(null);
+  const { dispatch } = useBlogContext();
+
   const handleClick = async () => {
-    const response = await fetch('/api/blogs/')
+    const response = await fetch(`/api/blogs/${blog._id}`, {
+      method: 'DELETE',
+    })
+    const json = await response.json();
+    if (!response.ok) {
+      setError(json.error)
+    } else {
+      dispatch({ type: 'DELETE_BLOG', payload: json })
+      setError(null)
+    }
 
   }
   return (
