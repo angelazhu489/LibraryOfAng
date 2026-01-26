@@ -23,6 +23,12 @@ const blog_details = (req, res) => {
 }
 
 const blog_create_post = async (req, res) => {
+  let { title, snippet, body } = req.body
+  let emptyFields = [];
+  if (!title) emptyFields.push('title')
+  if (!snippet) emptyFields.push('snippet')
+  if (!body) emptyFields.push('body')
+  if (emptyFields.length > 0) return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
   try {
     const blog = await new Blog(req.body);
     await blog.save()

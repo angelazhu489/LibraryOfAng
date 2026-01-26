@@ -11,6 +11,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --main-red: #D82A2A;
 }
 
 a {
@@ -87,4 +89,12 @@ header .container {
   padding: 6px;
   border-radius: 50%;
   /* color: #333; */
+}
+
+input.error {
+  border: 1px solid var(--main-red)
+}
+
+textarea.error {
+  border: 1px solid var(--main-red)
 }

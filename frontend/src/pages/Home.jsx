@@ -21,7 +21,7 @@ const Home = () => {
       };
     }
     fetchBlogs();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="home" >
