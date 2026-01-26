@@ -1,10 +1,13 @@
 import { useState } from "react"
 
+import { useBlogContext } from '../hooks/useBlogContext'
+
 const BlogForm = () => {
   const [title, setTitle] = useState('');
   const [snippet, setSnippet] = useState('');
   const [body, setBody] = useState('');
   const [error, setError] = useState(null);
+  const { dispatch } = useBlogContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent default form submit action (refresh)
@@ -20,6 +23,7 @@ const BlogForm = () => {
     if (!response.ok) {
       setError(json.error)
     } else {
+      dispatch({ type: 'CREATE_BLOG', payload: json })
       setTitle('')
       setSnippet('')
       setBody('')
