@@ -1,3 +1,9 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -75,20 +81,17 @@ header .container {
 }
 
 .blog-details p {
-  margin: 0;
   font-size: 0.9em;
-  /* color: #555; */
+  margin: 0 0 10px 0;
 }
 
-.workout-details span {
+.blog-details span {
   position: absolute;
   top: 20px;
   right: 20px;
   cursor: pointer;
-  background: #f1f1f1;
   padding: 6px;
   border-radius: 50%;
-  /* color: #333; */
 }
 
 input.error {
@@ -97,4 +100,23 @@ input.error {
 
 textarea.error {
   border: 1px solid var(--main-red)
+}
+
+form {
+  /* background: grey; */
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
+}
+
+form label {
+  display: block;
+  margin: 10px 0 0 0;
+}
+
+form button {
+  margin: 10px 0 0 0;
+  display: block;
 }

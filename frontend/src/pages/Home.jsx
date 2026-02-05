@@ -7,6 +7,7 @@ import { useBlogContext } from '../hooks/useBlogContext'
 // components
 import BlogDetails from '../components/BlogDetails'
 import BlogForm from '../components/BlogForm'
+import News from '../components/News'
 
 const Home = () => {
   const { blogs, dispatch } = useBlogContext();
@@ -34,6 +35,7 @@ const Home = () => {
       <Link to="/blogs/create">
         <h3>+ Create Blog</h3>
       </Link>
+      <News />
     </div >
   );
 };

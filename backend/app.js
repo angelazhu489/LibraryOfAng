@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes'); // import blog routers
 var bodyParser = require('body-parser')
 
-
 // create express app
 const app = express();
 
@@ -42,6 +41,18 @@ app.get('/about', (req, res) => {
 
 // blog routes
 app.use('/blogs', jsonParser, blogRoutes);
+
+// news
+app.get('/news', async (req, res) => {
+  try {
+    const response = await fetch('https://content.guardianapis.com/search?q=iran&api-key=472c7c9d-9640-4969-95a7-27ee05e1f293')
+    const json = await response.json();
+    res.status(200).json(json)
+  }
+  catch (error) {
+    res.status(400).json({ error: error.message })
+  }
+})
 
 // Get 404
 app.use((req, res) => {  // invoked everytime if reached

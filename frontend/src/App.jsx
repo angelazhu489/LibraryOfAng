@@ -18,7 +18,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/blogs" element={<Home />} />
-              <Route path="/blogs/create" element={<BlogForm />} />
             </Routes>
           </div>
         </BrowserRouter>
