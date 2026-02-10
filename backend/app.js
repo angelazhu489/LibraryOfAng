@@ -45,9 +45,10 @@ app.use('/blogs', jsonParser, blogRoutes);
 // news
 app.get('/news', async (req, res) => {
   try {
-    const response = await fetch('https://content.guardianapis.com/search?q=iran&api-key=472c7c9d-9640-4969-95a7-27ee05e1f293')
+    const date = new Date().toISOString().slice(0, 10);
+    const response = await fetch(`https://content.guardianapis.com/search?from-date=${date}&api-key=472c7c9d-9640-4969-95a7-27ee05e1f293`)
     const json = await response.json();
-    res.status(200).json(json)
+    res.status(200).json(json.response)
   }
   catch (error) {
     res.status(400).json({ error: error.message })

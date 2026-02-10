@@ -31,11 +31,13 @@ const Home = () => {
           <BlogDetails key={blog._id} blog={blog}></BlogDetails>
         ))}
       </div>
-      <BlogForm />
-      <Link to="/blogs/create">
-        <h3>+ Create Blog</h3>
-      </Link>
-      <News />
+      <div class="left">
+        <BlogForm />
+        <Link to="/blogs/create">
+          <h3>+ Create Blog</h3>
+        </Link>
+        <News />
+      </div>
     </div >
   );
 };
