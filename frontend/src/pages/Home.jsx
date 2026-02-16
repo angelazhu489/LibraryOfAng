@@ -33,9 +33,6 @@ const Home = () => {
       </div>
       <div class="left">
         <BlogForm />
-        <Link to="/blogs/create">
-          <h3>+ Create Blog</h3>
-        </Link>
         <News />
       </div>
     </div >
