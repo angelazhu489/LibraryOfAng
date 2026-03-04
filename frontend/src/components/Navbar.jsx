@@ -5,7 +5,7 @@ const Navbar = () => {
     <header>
       <div className="container">
         <Link to="/">
-          <h1>Library of Ang</h1>
+          <h1 class="text-3xl inline hover:text-amber-600">Library of Ang</h1>
         </Link>
       </div>
     </header>

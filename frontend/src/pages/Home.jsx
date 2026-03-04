@@ -25,14 +25,16 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div className="home" >
-      <div className="blogs">
+    <div className="home flex" >
+      <div className="blogs basis-1/2 p-4">
         {blogs && blogs.map((blog) => (
           <BlogDetails key={blog._id} blog={blog}></BlogDetails>
         ))}
+        <div className="p-4">
+          <BlogForm />
+        </div>
       </div>
-      <div class="left">
-        <BlogForm />
+      <div className="left basis-1/2 p-8">
         <News />
       </div>
     </div >

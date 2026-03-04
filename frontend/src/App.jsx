@@ -11,9 +11,11 @@ function App() {
   const title = "Welcome to the new blog"
   return (
     <>
-      <div className="App">
+      <div className="App min-h-screen bg-gray-900 text-gray-300 font-mono">
         <BrowserRouter>
-          <Navbar />
+          <div className="p-4">
+            <Navbar />
+          </div>
           <div className="pages">
             <Routes>
               <Route path="/" element={<Home />} />

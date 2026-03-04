@@ -22,10 +22,12 @@ const BlogDetails = ({ blog }) => {
   }
   return (
     <div className="blog-details">
-      <h3>{blog.title}</h3>
-      <p><strong>{blog.snippet}</strong></p>
-      <p>{formatDistance(new Date(blog.createdAt), { addSuffix: true })}</p>
-      <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
+      <div className="border-amber-600 border-2 rounded-2xl p-3 m-3">
+        <h3 className="text-amber-600">{blog.title}</h3>
+        <p>{blog.snippet}</p>
+        <p className="text-xs p-1">{formatDistance(new Date(blog.createdAt), { addSuffix: true })}</p>
+        <span className="material-symbols-outlined hover:cursor-pointer hover:text-amber-600" onClick={handleClick}>delete</span>
+      </div>
     </div>
   )
 }
