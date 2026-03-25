@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Link } from 'react-router-dom'
 
 // context hooks
 import { useBlogContext } from '../hooks/useBlogContext'

@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 
-export const BlogContext = createContext();
+export const BlogContext = createContext(); // create context
 
 export const BlogsReducer = (state, action) => {
   switch (action.type) {
@@ -18,7 +18,7 @@ export const BlogsReducer = (state, action) => {
 export const BlogContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(BlogsReducer, { blogs: null });
 
-  return (
+  return (  // provide context
     <BlogContext.Provider value={{ ...state, dispatch }}>
       {children}
     </BlogContext.Provider>

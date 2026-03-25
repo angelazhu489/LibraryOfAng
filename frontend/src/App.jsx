@@ -1,14 +1,10 @@
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // pages & components 
 import Home from './pages/Home'
-import BlogForm from './components/BlogForm'
 import Navbar from './components/Navbar';
 
 function App() {
-  const [count, setCount] = useState(0);
-  const title = "Welcome to the new blog"
   return (
     <>
       <div className="App min-h-screen bg-gray-900 text-gray-300 font-mono">

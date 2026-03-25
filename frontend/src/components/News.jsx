@@ -28,7 +28,7 @@ const News = () => {
     <div className="news">
       <h2 className="bg-amber-600 p-2">Today's news:</h2>
       <ul className="list-disc p-3">
-        {news.map((x) => <li className="p-1">{x}</li>)}
+        {news.map((x) => <li key={x} className="p-1">{x}</li>)}
       </ul>
       <h2>error:</h2>
       <p>{error || "no error"}</p>

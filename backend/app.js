@@ -2,14 +2,15 @@ require('dotenv').config()  // load environemnt variables (.env)
 const morgan = require('morgan');
 const express = require('express');
 const mongoose = require('mongoose');
-const blogRoutes = require('./routes/blogRoutes'); // import blog routers
+const blogRoutes = require('./routes/blogRoutes'); // import routers
+const userRoutes = require('./routes/userRoutes');
 var bodyParser = require('body-parser')
 
 // create express app
 const app = express();
 
 // register ejs as view engine
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
 
 // connect to mongodb
 mongoose.connect(process.env.dbURI)   // "first connect"
@@ -20,21 +21,15 @@ mongoose.connect(process.env.dbURI)   // "first connect"
 
 // middleware and static files
 const jsonParser = bodyParser.json()
-app.use(express.static('public'))   // get access to 'public' directory
+// app.use(express.static('public'))   // get access to 'public' directory
 app.use(morgan('dev'));   // set logger middleware
-
-app.use((req, res, next) => {  // invoked everytime if reached
-  // console.log(req.hostname);
-  // console.log(req.path);
-  // console.log(req.method);
-  next();
-});
 
 // routes
 app.get('/', (req, res) => {
   res.redirect('/blogs');
 });
 
+// about
 app.get('/about', (req, res) => {
   res.render('about', { title: 'About Ang' });
 });
@@ -42,7 +37,9 @@ app.get('/about', (req, res) => {
 // blog routes
 app.use('/blogs', jsonParser, blogRoutes);
 
-// news
+app.use('/users', jsonParser, userRoutes);
+
+// news – guardian api
 app.get('/news', async (req, res) => {
   try {
     const date = new Date().toISOString().slice(0, 10);
@@ -55,7 +52,7 @@ app.get('/news', async (req, res) => {
   }
 })
 
-// Get 404
+// 404
 app.use((req, res) => {  // invoked everytime if reached
   res.status(404).json({ error: '404 page not found' });
 });
