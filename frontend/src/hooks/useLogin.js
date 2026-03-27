@@ -1,17 +1,17 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { useAuthContext } from './useAuthContext'
 
-// signup hook
-export const useSignup = () => {
-  const [error, setError] = useState(null);
+export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(null);
+  const [error, setError] = useState();
   const { dispatch } = useAuthContext();
 
-  const signup = async (email, password) => {
+  const login = async (email, password) => {
     // reset states
-    setIsLoading(true)
     setError(null)
-    const response = await fetch('/api/users/signup', {
+    setIsLoading(true)
+    // get user from server db
+    const response = await fetch('/api/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: await JSON.stringify({ email, password })
@@ -19,7 +19,7 @@ export const useSignup = () => {
     const data = await response.json();
     if (!response.ok) {
       setIsLoading(false)
-      setError(json.error)  // set error
+      setError(data.error)
     } else {
       // store jwt in local storage 
       localStorage.setItem('user', JSON.stringify(data))
@@ -28,5 +28,5 @@ export const useSignup = () => {
       setIsLoading(false)
     }
   }
-  return { signup, isLoading, error }
+  return { login, isLoading, error }
 }
