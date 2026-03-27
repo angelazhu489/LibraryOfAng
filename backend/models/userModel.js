@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import validator from 'validator'
+
 const Schema = mongoose.Schema;   // Schema constructor
-const bcrypt = require('bcrypt');
-const validator = require('validator')
 
 const userSchema = new Schema({   // create Schema
   email: {
@@ -51,6 +52,6 @@ userSchema.statics.login = async function (email, password) {
   return user
 }
 
-const User = mongoose.model('User', userSchema);  // get collection
+export const User = mongoose.model('User', userSchema);  // get collection
 
-module.exports = User;
+// module.exports = User;

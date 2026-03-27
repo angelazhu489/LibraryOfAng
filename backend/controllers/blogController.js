@@ -1,4 +1,4 @@
-const Blog = require('../models/blogModel'); // import db collection
+import { Blog } from '../models/blogModel.js'; // import db collection
 
 // READ – all blogs sorted by creation date
 const blog_index = async (req, res) => {
@@ -22,7 +22,7 @@ const blog_details = (req, res) => {
     });
 }
 
-const blog_create_post = async (req, res) => {
+const blog_create = async (req, res) => {
   let { title, snippet, body } = req.body
   let emptyFields = [];
   if (!title) emptyFields.push('title')
@@ -50,9 +50,10 @@ const blog_delete = async (req, res) => {
   }
 }
 
-module.exports = {
+export const blogController = {
   blog_index,
   blog_details,
-  blog_create_post,
+  blog_create,
   blog_delete
 }
+// module.exports = blogController

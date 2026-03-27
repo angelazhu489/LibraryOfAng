@@ -1,20 +1,21 @@
-const express = require('express'); // require express dependency
-const blogController = require('../controllers/blogController')
-const router = express.Router();  // create new router
+import express from 'express'; // require express dependency
+import { blogController } from '../controllers/blogController.js';
+
+export const blogRoutes = express.Router();  // create new router
 
 // GET – all blogs
-router.get('/', blogController.blog_index);
+blogRoutes.get('/', blogController.blog_index);
 
 // GET – blog form
 // router.get('/create', blogController.blog_create_get);
 
 // GET – blog by id
-router.get('/:id', blogController.blog_details)
+blogRoutes.get('/:id', blogController.blog_details)
 
 // POST – add blog
-router.post('/', blogController.blog_create_post);
+blogRoutes.post('/', blogController.blog_create);
 
 // DELETE – blog
-router.delete('/:id', blogController.blog_delete);
+blogRoutes.delete('/:id', blogController.blog_delete);
 
-module.exports = router;  // export router
+// module.exports = router;  // export router

@@ -1,10 +1,11 @@
-require('dotenv').config()  // load environemnt variables (.env)
-const morgan = require('morgan');
-const express = require('express');
-const mongoose = require('mongoose');
-const blogRoutes = require('./routes/blogRoutes'); // import routers
-const userRoutes = require('./routes/userRoutes');
-var bodyParser = require('body-parser')
+import 'dotenv/config'  // load environemnt variables (.env)
+import morgan from 'morgan';
+import express from 'express';
+import mongoose from 'mongoose';
+import { blogRoutes } from './routes/blogRoutes.js'; // import routers
+import { userRoutes } from './routes/userRoutes.js';
+import bodyParser from 'body-parser'
+import { requireAuth } from './middleware/requireAuth.js'
 
 // create express app
 const app = express();
@@ -21,7 +22,6 @@ mongoose.connect(process.env.dbURI)   // "first connect"
 
 // middleware and static files
 const jsonParser = bodyParser.json()
-// app.use(express.static('public'))   // get access to 'public' directory
 app.use(morgan('dev'));   // set logger middleware
 
 // routes
@@ -35,7 +35,7 @@ app.get('/about', (req, res) => {
 });
 
 // blog routes
-app.use('/blogs', jsonParser, blogRoutes);
+app.use('/blogs', [jsonParser], blogRoutes);
 
 app.use('/users', jsonParser, userRoutes);
 

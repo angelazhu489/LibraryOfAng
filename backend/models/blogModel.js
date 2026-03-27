@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;   // Schema constructor
 
 const blogSchema = new Schema({   // create Schema
@@ -16,6 +16,6 @@ const blogSchema = new Schema({   // create Schema
   }
 }, { timestamps: true });
 
-const Blog = mongoose.model('Blog', blogSchema);  // get collection
+export const Blog = mongoose.model('Blog', blogSchema);  // get collection
 
-module.exports = Blog;
+// module.exports = Blog;

@@ -1,9 +1,10 @@
-const express = require('express'); // require express dependency
-const userController = require('../controllers/userController')
-const router = express.Router();  // create new router
+import express from 'express'; // require express dependency
+import { userController } from '../controllers/userController.js'
 
-router.post('/login', userController.login_user)
+export const userRoutes = express.Router();  // create new router
 
-router.post('/signup', userController.signup_user)
+userRoutes.post('/login', userController.login_user)
 
-module.exports = router;  // export router
+userRoutes.post('/signup', userController.signup_user)
+
+// module.exports = router;  // export router
