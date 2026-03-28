@@ -1,7 +1,10 @@
 import express from 'express'; // require express dependency
 import { blogController } from '../controllers/blogController.js';
+import { requireAuth } from '../middleware/requireAuth.js'
 
 export const blogRoutes = express.Router();  // create new router
+
+blogRoutes.use(requireAuth);
 
 // GET – all blogs
 blogRoutes.get('/', blogController.blog_index);

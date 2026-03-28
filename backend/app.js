@@ -5,7 +5,6 @@ import mongoose from 'mongoose';
 import { blogRoutes } from './routes/blogRoutes.js'; // import routers
 import { userRoutes } from './routes/userRoutes.js';
 import bodyParser from 'body-parser'
-import { requireAuth } from './middleware/requireAuth.js'
 
 // create express app
 const app = express();
@@ -35,7 +34,7 @@ app.get('/about', (req, res) => {
 });
 
 // blog routes
-app.use('/blogs', [jsonParser], blogRoutes);
+app.use('/blogs', jsonParser, blogRoutes);
 
 app.use('/users', jsonParser, userRoutes);
 
