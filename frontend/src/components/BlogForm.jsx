@@ -8,16 +8,24 @@ const BlogForm = () => {
   const [snippet, setSnippet] = useState('');
   const [body, setBody] = useState('');
   const [error, setError] = useState(null);
-  const { dispatch } = useBlogContext();
   const [emptyFields, setEmptyFields] = useState([]);
+  const { dispatch } = useBlogContext();
+  const { user } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent default form submit action (refresh)
+    if (!user) {
+      setError('You must be logged in')
+      return
+    }
+
     const blog = { title, snippet, body };
     const response = await fetch('/api/blogs', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', 'Accept': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       },
       body: await JSON.stringify(blog)
     })

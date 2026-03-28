@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 // context hooks
 import { useBlogContext } from '../hooks/useBlogContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 // components
 import BlogDetails from '../components/BlogDetails'
@@ -10,18 +11,23 @@ import News from '../components/News'
 
 const Home = () => {
   const { blogs, dispatch } = useBlogContext();
+  const { user } = useAuthContext();
 
   // fire function when component is rendered
   useEffect(() => {
     const fetchBlogs = async () => {
-      const response = await fetch('/api/blogs');
+      const response = await fetch('/api/blogs', {
+        headers: { authorization: `Bearer ${user.token}` }
+      });
       const json = await response.json();
       if (response.ok) {
-        dispatch({ type: 'SET_BLOGS', payload: json })
+        await dispatch({ type: 'SET_BLOGS', payload: json })
       };
     }
-    fetchBlogs();
-  }, [dispatch]);
+    if (user) {
+      fetchBlogs();
+    }
+  }, [dispatch, user]);
 
   return (
     <div className="home flex" >
