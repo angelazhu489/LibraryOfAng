@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 // pages & components 
 import Home from './pages/Home'
+import About from './pages/About'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Navbar from './components/Navbar';
@@ -22,6 +23,9 @@ function App() {
               <Route
                 path="/"
                 element={user ? <Home /> : <Navigate to="/login" />} />
+              <Route
+                path="/about"
+                element={<About />} />
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/" />} />
