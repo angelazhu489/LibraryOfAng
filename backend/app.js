@@ -2,9 +2,10 @@ import 'dotenv/config'  // load environemnt variables (.env)
 import morgan from 'morgan';
 import express from 'express';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser'
 import { blogRoutes } from './routes/blogRoutes.js'; // import routers
 import { userRoutes } from './routes/userRoutes.js';
-import bodyParser from 'body-parser'
+import { spotifyRoutes } from './routes/spotifyRoutes.js'
 
 // create express app
 const app = express();
@@ -37,6 +38,9 @@ app.get('/about', (req, res) => {
 app.use('/blogs', jsonParser, blogRoutes);
 
 app.use('/users', jsonParser, userRoutes);
+
+// spotify routes
+app.use('/spotify', jsonParser, spotifyRoutes);
 
 // news – guardian api
 app.get('/news', async (req, res) => {
