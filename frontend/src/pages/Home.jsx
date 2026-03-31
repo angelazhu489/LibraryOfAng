@@ -8,6 +8,7 @@ import { useAuthContext } from '../hooks/useAuthContext'
 import BlogDetails from '../components/BlogDetails'
 import BlogForm from '../components/BlogForm'
 import News from '../components/News'
+import Spotify from "../components/Spotify";
 
 const Home = () => {
   const { blogs, dispatch } = useBlogContext();
@@ -30,8 +31,8 @@ const Home = () => {
   }, [dispatch, user]);
 
   return (
-    <div className="home flex" >
-      <div className="blogs basis-1/2 p-4">
+    <div className="home flex p-5 space-x-5" >
+      <div className="blogs basis-1/3">
         {blogs && blogs.map((blog) => (
           <BlogDetails key={blog._id} blog={blog}></BlogDetails>
         ))}
@@ -39,8 +40,11 @@ const Home = () => {
           <BlogForm />
         </div>
       </div>
-      <div className="left basis-1/2 p-8">
+      <div className="left basis-1/3">
         <News />
+      </div>
+      <div className="left basis-1/3">
+        <Spotify />
       </div>
     </div >
   );
